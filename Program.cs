@@ -121,6 +121,13 @@ app.MapPost("/api/auth", async (AuthRequest req, HttpContext http) =>
     return Results.Ok();
 }).AllowAnonymous();
 
+// Sign out: clears the auth cookie and returns to the gate.
+app.MapGet("/logout", async (HttpContext http) =>
+{
+    await http.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    return Results.Redirect("/login");
+});
+
 // ---- projects (2.0-B, GW-HLD-SA-v2.0 §6.1) ----
 
 app.MapGet("/api/projects", async (ProjectService projects) =>
