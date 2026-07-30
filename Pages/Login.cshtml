@@ -1,0 +1,21 @@
+@page "/login"
+@model Groundwork.Pages.LoginModel
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="shell login-shell">
+    <div class="login-card">
+        <span class="wordmark-main">Groundwork</span>
+        <span class="wordmark-sub">Desk research, done while you do something else</span>
+
+        <label class="field-label" for="access-key">Access phrase</label>
+        <input id="access-key" type="password" class="text-input" autocomplete="current-password" autofocus />
+        <button id="enter" class="run-button" type="button">Enter</button>
+        <p class="error-line" id="auth-error" hidden></p>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/login.js" asp-append-version="true"></script>
+}

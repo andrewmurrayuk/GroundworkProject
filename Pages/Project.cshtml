@@ -1,0 +1,84 @@
+@page "/projects/{id:guid}"
+@model Groundwork.Pages.ProjectModel
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="shell">
+    <header class="masthead">
+        <div class="wordmark">
+            <a class="wordmark-back" href="/">← Projects</a>
+            <span class="wordmark-main" id="project-title">…</span>
+            <span class="wordmark-sub" id="project-subtitle"></span>
+        </div>
+    </header>
+
+    <main class="columns">
+        <section class="panel panel-input" id="input-panel">
+            <h1 class="panel-title">Set the brief</h1>
+
+            <label class="field-label" for="topic">Topic</label>
+            <p class="field-hint">Name the subject in a phrase — Groundwork drafts the rest for you to edit.</p>
+            <div class="topic-row">
+                <input id="topic" type="text" placeholder="e.g. delayed discharges in the NHS" />
+                <button id="draft" class="draft-button" type="button">Draft the brief</button>
+            </div>
+            <p class="error-line" id="draft-error" hidden></p>
+
+            <label class="field-label" for="brief">Research brief</label>
+            <p class="field-hint">Saved as a new version with each changed run.</p>
+            <textarea id="brief" rows="6"></textarea>
+
+            <label class="field-label" for="topics">Seed topics for discovery</label>
+            <p class="field-hint">Groundwork searches the live web from these. One per line.</p>
+            <textarea id="topics" rows="4"></textarea>
+
+            <label class="field-label" for="urls">Known sources <span class="optional">optional, this run only</span></label>
+            <p class="field-hint">URLs you already have. One per line.</p>
+            <textarea id="urls" rows="3" placeholder="https://…"></textarea>
+
+            <div class="papers">
+                <div class="papers-head">
+                    <label class="field-label">Paper library</label>
+                    <label class="upload-button" for="paper-file">Upload PDF</label>
+                    <input id="paper-file" type="file" accept=".pdf" hidden />
+                </div>
+                <p class="field-hint">Tick papers to include them in the next run alongside web sources.</p>
+                <ul class="paper-list" id="paper-list"></ul>
+                <p class="error-line" id="paper-error" hidden></p>
+            </div>
+
+            <button id="run" class="run-button" type="button">Start the research</button>
+            <p class="error-line" id="error-line" hidden></p>
+
+            <div class="history">
+                <h2 class="history-title">Run history</h2>
+                <ol class="history-list" id="history-list"></ol>
+                <p class="ledger-empty history-empty" id="history-empty" hidden>No runs yet in this project.</p>
+            </div>
+        </section>
+
+        <section class="panel panel-ledger">
+            <div class="ledger-head">
+                <h2 class="panel-title">Evidence ledger</h2>
+                <p class="status-line" id="status-line">Waiting for a brief.</p>
+            </div>
+            <div class="ledger-empty" id="ledger-empty">
+                <p>Sources appear here as they are found, read and mined for signals — each row is one piece of evidence in the final briefing.</p>
+            </div>
+            <ol class="ledger" id="ledger"></ol>
+        </section>
+    </main>
+
+    <section class="panel panel-report" id="report-panel" hidden>
+        <div class="report-head">
+            <h2 class="report-title" id="report-title"></h2>
+            <a class="download-button" id="download" href="#" download>Download Word document</a>
+        </div>
+        <div class="report-body" id="report-body"></div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/app.js" asp-append-version="true"></script>
+}
